@@ -1,17 +1,17 @@
 ---
 ---
 
-<section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-stone-900">
+<section class="relative min-h-screen flex items-center justify-center overflow-hidden" style="background: linear-gradient(135deg, #FFFFFF 0%, #E5A1C9 50%, #B8D374 100%);">
   <!-- Background gradient mesh -->
   <div class="absolute inset-0 z-0">
-    <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-stone-900 via-stone-800 to-stone-900"></div>
+    <div class="absolute top-0 left-0 w-full h-full" style="background: linear-gradient(to bottom right, rgba(255,255,255,0.3), rgba(229,161,201,0.2), rgba(184,211,116,0.3));"></div>
     <!-- Decorative circles -->
-    <div class="absolute top-10 right-20 w-96 h-96 bg-pink-400/10 rounded-full blur-3xl animate-pulse"></div>
-    <div class="absolute bottom-20 left-10 w-80 h-80 bg-sage-300/10 rounded-full blur-3xl" style="animation: pulse 4s ease-in-out infinite 1s;"></div>
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-pink-300/5 rounded-full blur-3xl"></div>
+    <div class="absolute top-10 right-20 w-96 h-96 rounded-full blur-3xl animate-pulse" style="background: radial-gradient(circle, rgba(229,161,201,0.15) 0%, rgba(184,211,116,0.1) 100%);"></div>
+    <div class="absolute bottom-20 left-10 w-80 h-80 rounded-full blur-3xl" style="background: radial-gradient(circle, rgba(184,211,116,0.15) 0%, rgba(229,161,201,0.1) 100%); animation: pulse 4s ease-in-out infinite 1s;"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full blur-3xl" style="background: radial-gradient(circle, rgba(229,161,201,0.08) 0%, rgba(255,255,255,0.05) 100%);"></div>
     
     <!-- Grid pattern overlay -->
-    <div class="absolute inset-0" style="background-image: radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 40px 40px;"></div>
+    <div class="absolute inset-0" style="background-image: radial-gradient(rgba(0,0,0,0.02) 1px, transparent 1px); background-size: 40px 40px;"></div>
   </div>
 
   <!-- Main content -->
@@ -22,16 +22,16 @@
       <div>
         <!-- Label -->
         <div class="flex items-center gap-3 mb-8">
-          <div class="w-8 h-px bg-pink-400"></div>
-          <span class="text-pink-400 text-xs tracking-[0.3em] uppercase font-body font-medium">New Season 2025</span>
+          <div class="w-8 h-px bg-pink-500"></div>
+          <span class="text-pink-600 text-xs tracking-[0.3em] uppercase font-body font-medium">New Season 2025</span>
         </div>
 
         <!-- Headline -->
-        <h1 class="font-display font-light text-white leading-none mb-6">
+        <h1 class="font-display font-light text-stone-800 leading-none mb-6">
           <span class="block text-6xl lg:text-7xl xl:text-8xl tracking-tight" style="animation: fadeUp 0.9s ease 0.2s both;">
             Dress
           </span>
-          <span class="block text-6xl lg:text-7xl xl:text-8xl tracking-tight text-pink-300 italic" style="animation: fadeUp 0.9s ease 0.35s both;">
+          <span class="block text-6xl lg:text-7xl xl:text-8xl tracking-tight text-pink-500 italic" style="animation: fadeUp 0.9s ease 0.35s both;">
             Your Story
           </span>
           <span class="block text-6xl lg:text-7xl xl:text-8xl tracking-tight" style="animation: fadeUp 0.9s ease 0.5s both;">
@@ -40,7 +40,7 @@
         </h1>
 
         <!-- Subtext -->
-        <p class="font-body text-stone-400 text-base leading-relaxed max-w-md mb-10" style="animation: fadeUp 0.9s ease 0.65s both;">
+        <p class="font-body text-stone-600 text-base leading-relaxed max-w-md mb-10" style="animation: fadeUp 0.9s ease 0.65s both;">
           Curated for the modern Filipina — feminine, confident, and effortlessly chic. Discover pieces that celebrate you.
         </p>
 
@@ -62,8 +62,8 @@
             <!-- { value: '5★', label: 'Rated' }, -->
           ].map(stat => (
             <div>
-              <div class="font-display text-2xl font-light text-white">{stat.value}</div>
-              <div class="text-stone-500 text-xs tracking-widest uppercase font-body">{stat.label}</div>
+              <div class="font-display text-2xl font-light text-stone-800">{stat.value}</div>
+              <div class="text-stone-600 text-xs tracking-widest uppercase font-body">{stat.label}</div>
             </div>
           ))}
         </div>
@@ -84,17 +84,13 @@
             </div>
           </div>
 
-          <!-- Main placeholder image -->
-          <div class="w-full aspect-[3/4] max-w-sm mx-auto rounded-3xl overflow-hidden img-placeholder bg-gradient-to-br from-pink-200 via-rose-100 to-purple-100 shadow-2xl">
-            <div class="flex flex-col items-center justify-center h-full text-center px-8">
-              <div class="w-24 h-24 rounded-full bg-white/30 backdrop-blur-sm flex items-center justify-center mb-6">
-                <svg width="40" height="40" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="1.2" viewBox="0 0 24 24">
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
-                </svg>
-              </div>
-              <p class="text-white/80 font-display text-lg font-light">Featured Model</p>
-              <p class="text-white/50 text-xs font-body mt-2">Campaign Image Coming Soon</p>
-            </div>
+          <!-- Main featured model image -->
+          <div class="w-full aspect-[3/4] max-w-sm mx-auto rounded-3xl overflow-hidden shadow-2xl">
+            <img
+              src="/images/products/fifi/184A1220.jpeg"
+              alt="Featured Model"
+              class="w-full h-full object-cover object-top"
+            />
           </div>
 
           <!-- Side mini cards -->
@@ -106,8 +102,8 @@
                 </svg>
               </div>
             </div>
-            <p class="font-display text-xs text-stone-700 leading-tight">Sage Wrap Dress</p>
-            <p class="text-pink-400 text-xs font-semibold mt-0.5">₱1,299</p>
+            <p class="font-display text-xs text-stone-700 leading-tight">Fifi Set</p>
+            <p class="text-pink-400 text-xs font-semibold mt-0.5">₱1,750</p>
           </div>
 
           <!-- Bottom floating tag -->
@@ -115,7 +111,7 @@
             <svg width="14" height="14" fill="white" viewBox="0 0 24 24">
               <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
             </svg>
-            <span class="text-xs font-semibold tracking-wide">Best Seller</span>
+            <span class="text-xs font-semibold tracking-wide">Editors Choice</span>
           </div>
         </div>
       </div>
@@ -123,9 +119,9 @@
   </div>
 
   <!-- Scroll indicator -->
-  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-stone-500" style="animation: fadeIn 1s ease 1.5s both;">
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-stone-600" style="animation: fadeIn 1s ease 1.5s both;">
     <span class="text-xs tracking-widest uppercase font-body">Scroll</span>
-    <div class="w-px h-12 bg-gradient-to-b from-stone-500 to-transparent" style="animation: pulse 2s ease-in-out infinite;"></div>
+    <div class="w-px h-12 bg-gradient-to-b from-stone-600 to-transparent" style="animation: pulse 2s ease-in-out infinite;"></div>
   </div>
 </section>
 
