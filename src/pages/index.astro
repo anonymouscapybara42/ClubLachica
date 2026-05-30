@@ -1,0 +1,351 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Hero from '../components/Hero.astro';
+import ProductCard from '../components/ProductCard.astro';
+import Footer from '../components/Footer.astro';
+
+// Real products with actual images
+const newArrivals = [
+  {
+    name: 'Fifi Set',
+    price: '1,750',
+    category: 'Sets',
+    badge: 'New',
+    images: [
+      '/images/products/fifi/IMG_9362.jpeg',
+      '/images/products/fifi/IMG_9370.jpeg',
+    ],
+  },
+  {
+    name: 'Lachica Set',
+    price: '1,750',
+    category: 'Sets',
+    badge: 'New',
+    images: [
+      '/images/products/lachica/IMG_9055.jpeg',
+      '/images/products/lachica/IMG_9087.jpeg',
+    ],
+  },
+  {
+    name: 'Ari Top',
+    price: '850',
+    category: 'Tops',
+    badge: 'New',
+    images: [
+      '/images/products/ari/IMG_3179.jpeg',
+      '/images/products/ari/IMG_3217.jpeg',
+    ],
+  },
+  {
+    name: 'Yoyo Top',
+    price: '900',
+    category: 'Tops',
+    badge: 'New',
+    images: [
+      '/images/products/yoyo/IMG_9659.jpeg',
+      '/images/products/yoyo/IMG_9662.jpeg',
+    ],
+  },
+];
+
+const bestSellers = [
+  {
+    name: 'Fifi Set',
+    price: '1,750',
+    category: 'Sets',
+    badge: 'Best Seller',
+    images: [
+      '/images/products/fifi/184A1212.jpeg',
+      '/images/products/fifi/184A1220.jpeg',
+    ],
+  },
+  {
+    name: 'Fifi Set',
+    price: '1,750',
+    category: 'Sets',
+    images: [
+      '/images/products/fifi/IMG_9418.jpeg',
+      '/images/products/fifi/IMG_9420.jpeg',
+    ],
+  },
+  {
+    name: 'Lachica Set',
+    price: '1,750',
+    category: 'Sets',
+    badge: 'Popular',
+    images: [
+      '/images/products/lachica/IMG_9103.jpeg',
+      '/images/products/lachica/IMG_9145.jpeg',
+    ],
+  },
+  {
+    name: 'Ari Top',
+    price: '850',
+    category: 'Tops',
+    images: [
+      '/images/products/ari/IMG_3231.jpeg',
+      '/images/products/ari/IMG_3258.jpeg',
+    ],
+  },
+  {
+    name: 'Yoyo Top',
+    price: '900',
+    category: 'Tops',
+    badge: 'Popular',
+    images: [
+      '/images/products/yoyo/IMG_9669.jpeg',
+      '/images/products/yoyo/IMG_9673.jpeg',
+    ],
+  },
+  {
+    name: 'Fifi Set',
+    price: '1,750',
+    category: 'Sets',
+    images: [
+      '/images/products/fifi/IMG_9485.jpeg',
+      '/images/products/fifi/IMG_9497.jpeg',
+    ],
+  },
+  {
+    name: 'Lachica Set',
+    price: '1,750',
+    category: 'Sets',
+    images: [
+      '/images/products/lachica/IMG_9155.jpeg',
+      '/images/products/lachica/IMG_9165.jpeg',
+    ],
+  },
+  {
+    name: 'Yoyo Top',
+    price: '900',
+    category: 'Tops',
+    images: [
+      '/images/products/yoyo/IMG_9684.jpeg',
+      '/images/products/yoyo/IMG_9685.jpeg',
+    ],
+  },
+];
+
+const categories = [
+  { name: 'Sets', count: '2 styles', gradient: 'from-pink-200 to-rose-100', img: '/images/products/fifi/IMG_9606.jpeg' },
+  { name: 'Tops', count: '2 styles', gradient: 'from-sage-200 to-green-100', img: '/images/products/ari/IMG_3456.jpeg' },
+  { name: 'Fifi Set', count: '₱1,750', gradient: 'from-amber-100 to-orange-100', img: '/images/products/fifi/184A1526.jpeg' },
+  { name: 'Yoyo Top', count: '₱900', gradient: 'from-sky-100 to-blue-100', img: '/images/products/yoyo/IMG_9699.jpeg' },
+];
+---
+
+<Layout title="Home" activePage="home">
+  <Navbar transparent={true} />
+  <Hero />
+
+  <!-- Category Showcase -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <p class="text-pink-400 text-xs tracking-[0.3em] uppercase font-body mb-3 animate-on-scroll">Shop By Style</p>
+        <h2 class="font-display text-4xl lg:text-5xl font-light text-stone-800 animate-on-scroll delay-100">Find Your Look</h2>
+        <div class="section-divider mt-4 animate-on-scroll delay-200"></div>
+      </div>
+
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        {categories.map((cat, i) => (
+          <a href="/catalog" class="group relative rounded-3xl overflow-hidden hover-lift cursor-pointer animate-on-scroll block" style={`transition-delay: ${i*0.1}s`}>
+            <div class="aspect-[3/4] relative overflow-hidden">
+              <img
+                src={cat.img}
+                alt={cat.name}
+                class="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent"></div>
+            </div>
+            <div class="absolute bottom-0 left-0 right-0 p-5 text-white">
+              <p class="font-display text-xl font-light">{cat.name}</p>
+              <p class="text-white/70 text-xs font-body mt-0.5">{cat.count}</p>
+            </div>
+            <div class="absolute inset-0 bg-pink-400/0 group-hover:bg-pink-400/10 transition-colors duration-300 rounded-3xl"></div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- New Arrivals -->
+  <section id="products" class="py-20 bg-cream">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="flex flex-col sm:flex-row items-start sm:items-end justify-between mb-12">
+        <div>
+          <p class="text-pink-400 text-xs tracking-[0.3em] uppercase font-body mb-3 animate-on-scroll">Fresh Drops</p>
+          <h2 class="font-display text-4xl lg:text-5xl font-light text-stone-800 animate-on-scroll delay-100">New Arrivals</h2>
+          <div class="w-14 h-0.5 bg-gradient-to-r from-pink-300 to-sage-300 mt-4 animate-on-scroll delay-200"></div>
+        </div>
+        <a href="/catalog" class="btn-outline mt-6 sm:mt-0 animate-on-scroll">View All</a>
+      </div>
+
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+        {newArrivals.map((product, i) => (
+          <div class="group">
+            <ProductCard {...product} index={i} />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Promo Banner -->
+  <section class="relative py-24 overflow-hidden bg-stone-900">
+    <div class="absolute inset-0">
+      <div class="absolute inset-0 bg-gradient-to-r from-stone-900 via-stone-900/85 to-stone-900/30 z-10"></div>
+      <!-- Use a real product image as background -->
+      <img
+        src="/images/products/fifi/IMG_9574.jpeg"
+        alt="Club La Chica Collection"
+        class="absolute inset-0 w-full h-full object-cover object-top opacity-60"
+      />
+    </div>
+
+    <div class="relative z-20 max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="max-w-xl">
+        <span class="inline-block bg-pink-400 text-white text-[10px] font-semibold tracking-[0.3em] uppercase px-4 py-2 rounded-full mb-6 animate-on-scroll">
+          Club La Chica
+        </span>
+        <h2 class="font-display text-5xl lg:text-6xl font-light text-white leading-none mb-6 animate-on-scroll delay-100">
+          Curated For<br/><span class="italic text-pink-300">The Modern Filipina</span>
+        </h2>
+        <p class="font-body text-stone-400 leading-relaxed mb-8 animate-on-scroll delay-200">
+          Sets, tops, and everyday essentials — crafted to make you feel beautiful every single day.
+        </p>
+        <div class="flex flex-wrap gap-4 animate-on-scroll delay-300">
+          <a href="/catalog" class="btn-primary">Shop All Styles</a>
+          <a href="/collection" class="btn-ghost">View Lookbook</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Best Sellers -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <p class="text-pink-400 text-xs tracking-[0.3em] uppercase font-body mb-3 animate-on-scroll">Customer Favorites</p>
+        <h2 class="font-display text-4xl lg:text-5xl font-light text-stone-800 animate-on-scroll delay-100">Best Sellers</h2>
+        <div class="section-divider mt-4 animate-on-scroll delay-200"></div>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-6">
+        {bestSellers.map((product, i) => (
+          <div class="group">
+            <ProductCard {...product} index={i} />
+          </div>
+        ))}
+      </div>
+
+      <div class="text-center mt-12 animate-on-scroll">
+        <a href="/catalog" class="btn-outline">View All Products</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Brand Story Preview -->
+  <section class="py-20 bg-champagne overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+        <!-- Images mosaic -->
+        <div class="relative animate-on-scroll-left">
+          <div class="grid grid-cols-2 gap-4">
+            <div class="aspect-[3/4] rounded-3xl overflow-hidden shadow-xl">
+              <img src="/images/products/fifi/IMG_9633.jpeg" alt="Fifi Set" class="w-full h-full object-cover object-top" />
+            </div>
+            <div class="mt-8 space-y-4">
+              <div class="aspect-square rounded-3xl overflow-hidden shadow-xl">
+                <img src="/images/products/lachica/IMG_9168.jpeg" alt="Lachica Set" class="w-full h-full object-cover object-top" />
+              </div>
+              <div class="aspect-[4/3] rounded-3xl overflow-hidden shadow-xl">
+                <img src="/images/products/yoyo/IMG_9693.jpeg" alt="Yoyo Top" class="w-full h-full object-cover object-top" />
+              </div>
+            </div>
+          </div>
+          <!-- Floating review card -->
+          <div class="absolute -bottom-4 -right-4 bg-white rounded-2xl p-5 shadow-2xl max-w-[220px] hidden lg:block" style="animation: float 6s ease-in-out infinite;">
+            <div class="flex items-center gap-1 mb-2">
+              {[1,2,3,4,5].map(() => <svg width="11" height="11" fill="#f9a8d4" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>)}
+            </div>
+            <p class="font-display text-sm text-stone-700 italic leading-snug">"Love my Fifi Set! So flattering and comfy!"</p>
+            <p class="text-xs text-stone-400 mt-2 font-body">— Jessa, verified buyer</p>
+          </div>
+        </div>
+
+        <!-- Text -->
+        <div class="animate-on-scroll-right">
+          <p class="text-pink-400 text-xs tracking-[0.3em] uppercase font-body mb-4">Our Story</p>
+          <h2 class="font-display text-5xl font-light text-stone-800 leading-tight mb-6">
+            Made for the<br/><span class="italic text-pink-400">Modern Filipina</span>
+          </h2>
+          <p class="font-body text-stone-500 leading-relaxed mb-4">
+            Club La Chica was born from a simple belief: every woman deserves to feel beautiful, confident, and comfortable — without the luxury price tag.
+          </p>
+          <p class="font-body text-stone-500 leading-relaxed mb-8">
+            We curate pieces that celebrate femininity in all its forms. From casual days to celebrations worth dressing up for — our collection has something for every chica.
+          </p>
+          <div class="grid grid-cols-2 gap-4 mb-8">
+            {[
+              { icon: '🌸', label: 'Feminine', desc: 'Curated with love' },
+              { icon: '✨', label: 'Quality', desc: 'Premium fabrics' },
+              { icon: '💚', label: 'Mindful', desc: 'Thoughtfully made' },
+              { icon: '🇵🇭', label: 'Filipino', desc: 'Proudly local' },
+            ].map(val => (
+              <div class="flex gap-3 items-start">
+                <span class="text-xl flex-shrink-0">{val.icon}</span>
+                <div>
+                  <p class="font-body font-semibold text-stone-800 text-sm">{val.label}</p>
+                  <p class="text-stone-400 text-xs">{val.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <a href="/about" class="btn-primary">Discover Our Story</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Instagram Strip -->
+  <section class="py-16 bg-cream">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="text-center mb-8 animate-on-scroll">
+        <p class="font-body text-stone-500 text-sm">Follow us <a href="#" class="text-pink-400 font-semibold">@clublachica</a> for daily style inspo</p>
+      </div>
+      <div class="grid grid-cols-4 lg:grid-cols-6 gap-3">
+        {[
+          '/images/products/fifi/IMG_9635.jpeg',
+          '/images/products/yoyo/IMG_9698.jpeg',
+          '/images/products/ari/IMG_3456.jpeg',
+          '/images/products/fifi/IMG_9637.jpeg',
+          '/images/products/lachica/IMG_9170.jpeg',
+          '/images/products/yoyo/IMG_9699.jpeg',
+        ].map((img, i) => (
+          <a href="#" class="relative group overflow-hidden rounded-2xl animate-on-scroll" style={`transition-delay: ${i*0.08}s`}>
+            <div class="aspect-square">
+              <img src={img} alt="Club La Chica" class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110" />
+            </div>
+            <div class="absolute inset-0 bg-pink-400/0 group-hover:bg-pink-400/20 transition-colors duration-300 flex items-center justify-center">
+              <svg class="opacity-0 group-hover:opacity-100 transition-opacity duration-300" width="22" height="22" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="white"/>
+              </svg>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<style>
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+</style>

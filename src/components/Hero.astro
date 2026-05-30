@@ -1,0 +1,149 @@
+---
+---
+
+<section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-stone-900">
+  <!-- Background gradient mesh -->
+  <div class="absolute inset-0 z-0">
+    <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-stone-900 via-stone-800 to-stone-900"></div>
+    <!-- Decorative circles -->
+    <div class="absolute top-10 right-20 w-96 h-96 bg-pink-400/10 rounded-full blur-3xl animate-pulse"></div>
+    <div class="absolute bottom-20 left-10 w-80 h-80 bg-sage-300/10 rounded-full blur-3xl" style="animation: pulse 4s ease-in-out infinite 1s;"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-pink-300/5 rounded-full blur-3xl"></div>
+    
+    <!-- Grid pattern overlay -->
+    <div class="absolute inset-0" style="background-image: radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 40px 40px;"></div>
+  </div>
+
+  <!-- Main content -->
+  <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 w-full py-32">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+      
+      <!-- Left: Text content -->
+      <div>
+        <!-- Label -->
+        <div class="flex items-center gap-3 mb-8">
+          <div class="w-8 h-px bg-pink-400"></div>
+          <span class="text-pink-400 text-xs tracking-[0.3em] uppercase font-body font-medium">New Season 2025</span>
+        </div>
+
+        <!-- Headline -->
+        <h1 class="font-display font-light text-white leading-none mb-6">
+          <span class="block text-6xl lg:text-7xl xl:text-8xl tracking-tight" style="animation: fadeUp 0.9s ease 0.2s both;">
+            Dress
+          </span>
+          <span class="block text-6xl lg:text-7xl xl:text-8xl tracking-tight text-pink-300 italic" style="animation: fadeUp 0.9s ease 0.35s both;">
+            Your Story
+          </span>
+          <span class="block text-6xl lg:text-7xl xl:text-8xl tracking-tight" style="animation: fadeUp 0.9s ease 0.5s both;">
+            Her Way.
+          </span>
+        </h1>
+
+        <!-- Subtext -->
+        <p class="font-body text-stone-400 text-base leading-relaxed max-w-md mb-10" style="animation: fadeUp 0.9s ease 0.65s both;">
+          Curated for the modern Filipina — feminine, confident, and effortlessly chic. Discover pieces that celebrate you.
+        </p>
+
+        <!-- Buttons -->
+        <div class="flex flex-wrap gap-4" style="animation: fadeUp 0.9s ease 0.8s both;">
+          <a href="#products" class="btn-primary">
+            Order Now
+          </a>
+          <a href="/collection" class="btn-ghost">
+            View Collection
+          </a>
+        </div>
+
+        <!-- Stats -->
+        <div class="flex gap-10 mt-14" style="animation: fadeUp 0.9s ease 0.95s both;">
+          {[
+           <!--  { value: '500+', label: 'Styles' },-->
+           <!-- { value: '10K+', label: 'Happy Clients' }, -->
+            <!-- { value: '5★', label: 'Rated' }, -->
+          ].map(stat => (
+            <div>
+              <div class="font-display text-2xl font-light text-white">{stat.value}</div>
+              <div class="text-stone-500 text-xs tracking-widest uppercase font-body">{stat.label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Right: Visual display -->
+      <div class="relative hidden lg:block" style="animation: fadeIn 1.2s ease 0.5s both;">
+        <!-- Main card -->
+        <div class="relative">
+          <!-- Floating badge -->
+          <div class="absolute -top-6 -left-6 z-20 bg-white rounded-2xl p-4 shadow-2xl" style="animation: float 5s ease-in-out infinite;">
+            <p class="font-display text-xs text-stone-500 mb-1">New Arrival</p>
+            <p class="font-display text-sm font-medium text-stone-800">Spring Collection</p>
+            <div class="flex gap-1 mt-2">
+              {['bg-pink-300', 'bg-sage-300', 'bg-champagne', 'bg-stone-200'].map(c => (
+                <div class={`w-4 h-4 rounded-full ${c}`}></div>
+              ))}
+            </div>
+          </div>
+
+          <!-- Main placeholder image -->
+          <div class="w-full aspect-[3/4] max-w-sm mx-auto rounded-3xl overflow-hidden img-placeholder bg-gradient-to-br from-pink-200 via-rose-100 to-purple-100 shadow-2xl">
+            <div class="flex flex-col items-center justify-center h-full text-center px-8">
+              <div class="w-24 h-24 rounded-full bg-white/30 backdrop-blur-sm flex items-center justify-center mb-6">
+                <svg width="40" height="40" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="1.2" viewBox="0 0 24 24">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+                </svg>
+              </div>
+              <p class="text-white/80 font-display text-lg font-light">Featured Model</p>
+              <p class="text-white/50 text-xs font-body mt-2">Campaign Image Coming Soon</p>
+            </div>
+          </div>
+
+          <!-- Side mini cards -->
+          <div class="absolute -right-8 top-1/4 bg-white rounded-2xl p-4 shadow-xl" style="animation: float 5s ease-in-out infinite 1s; width: 130px;">
+            <div class="w-full aspect-square rounded-xl img-placeholder bg-gradient-to-br from-sage-200 to-green-100 mb-2 overflow-hidden">
+              <div class="flex items-center justify-center h-full">
+                <svg width="20" height="20" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1.8" viewBox="0 0 24 24">
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>
+                </svg>
+              </div>
+            </div>
+            <p class="font-display text-xs text-stone-700 leading-tight">Sage Wrap Dress</p>
+            <p class="text-pink-400 text-xs font-semibold mt-0.5">₱1,299</p>
+          </div>
+
+          <!-- Bottom floating tag -->
+          <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-pink-400 text-white rounded-full px-6 py-3 shadow-lg flex items-center gap-2" style="animation: float 5s ease-in-out infinite 2s;">
+            <svg width="14" height="14" fill="white" viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+            </svg>
+            <span class="text-xs font-semibold tracking-wide">Best Seller</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-stone-500" style="animation: fadeIn 1s ease 1.5s both;">
+    <span class="text-xs tracking-widest uppercase font-body">Scroll</span>
+    <div class="w-px h-12 bg-gradient-to-b from-stone-500 to-transparent" style="animation: pulse 2s ease-in-out infinite;"></div>
+  </div>
+</section>
+
+<style>
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+</style>

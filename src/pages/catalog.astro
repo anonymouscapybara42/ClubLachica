@@ -1,0 +1,155 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import ProductCard from '../components/ProductCard.astro';
+import Footer from '../components/Footer.astro';
+
+// All real products — every image variation as its own card
+const allProducts = [
+  // ── FIFI SETS ──────────────────────────────────────────────
+  { name: 'Fifi Set', price: '1,750', category: 'Sets', badge: 'New',
+    images: ['/images/products/fifi/184A1212.jpeg', '/images/products/fifi/184A1220.jpeg'] },
+  { name: 'Fifi Set', price: '1,750', category: 'Sets',
+    images: ['/images/products/fifi/184A1526.jpeg', '/images/products/fifi/IMG_9362.jpeg'] },
+  { name: 'Fifi Set', price: '1,750', category: 'Sets',
+    images: ['/images/products/fifi/IMG_9370.jpeg', '/images/products/fifi/IMG_9386.jpeg'] },
+  { name: 'Fifi Set', price: '1,750', category: 'Sets',
+    images: ['/images/products/fifi/IMG_9418.jpeg', '/images/products/fifi/IMG_9420.jpeg'] },
+  { name: 'Fifi Set', price: '1,750', category: 'Sets',
+    images: ['/images/products/fifi/IMG_9435.jpeg', '/images/products/fifi/IMG_9485.jpeg'] },
+  { name: 'Fifi Set', price: '1,750', category: 'Sets',
+    images: ['/images/products/fifi/IMG_9497.jpeg', '/images/products/fifi/IMG_9503.jpeg'] },
+  { name: 'Fifi Set', price: '1,750', category: 'Sets',
+    images: ['/images/products/fifi/IMG_9505.jpeg', '/images/products/fifi/IMG_9534.jpeg'] },
+  { name: 'Fifi Set', price: '1,750', category: 'Sets',
+    images: ['/images/products/fifi/IMG_9566.jpeg', '/images/products/fifi/IMG_9574.jpeg'] },
+  { name: 'Fifi Set', price: '1,750', category: 'Sets',
+    images: ['/images/products/fifi/IMG_9606.jpeg', '/images/products/fifi/IMG_9607.jpeg'] },
+  { name: 'Fifi Set', price: '1,750', category: 'Sets',
+    images: ['/images/products/fifi/IMG_9631.jpeg', '/images/products/fifi/IMG_9633.jpeg'] },
+  { name: 'Fifi Set', price: '1,750', category: 'Sets',
+    images: ['/images/products/fifi/IMG_9635.jpeg', '/images/products/fifi/IMG_9637.jpeg'] },
+
+  // ── LACHICA SETS ──────────────────────────────────────────
+  { name: 'Lachica Set', price: '1,750', category: 'Sets', badge: 'New',
+    images: ['/images/products/lachica/IMG_9055.jpeg', '/images/products/lachica/IMG_9087.jpeg'] },
+  { name: 'Lachica Set', price: '1,750', category: 'Sets',
+    images: ['/images/products/lachica/IMG_9103.jpeg', '/images/products/lachica/IMG_9145.jpeg'] },
+  { name: 'Lachica Set', price: '1,750', category: 'Sets',
+    images: ['/images/products/lachica/IMG_9155.jpeg', '/images/products/lachica/IMG_9165.jpeg'] },
+  { name: 'Lachica Set', price: '1,750', category: 'Sets',
+    images: ['/images/products/lachica/IMG_9168.jpeg', '/images/products/lachica/IMG_9170.jpeg'] },
+
+  // ── ARI TOPS ──────────────────────────────────────────────
+  { name: 'Ari Top', price: '850', category: 'Tops', badge: 'New',
+    images: ['/images/products/ari/IMG_3179.jpeg', '/images/products/ari/IMG_3217.jpeg'] },
+  { name: 'Ari Top', price: '850', category: 'Tops',
+    images: ['/images/products/ari/IMG_3231.jpeg', '/images/products/ari/IMG_3258.jpeg'] },
+  { name: 'Ari Top', price: '850', category: 'Tops',
+    images: ['/images/products/ari/IMG_3456.jpeg', '/images/products/ari/IMG_3179.jpeg'] },
+
+  // ── YOYO TOPS ─────────────────────────────────────────────
+  { name: 'Yoyo Top', price: '900', category: 'Tops', badge: 'New',
+    images: ['/images/products/yoyo/IMG_9659.jpeg', '/images/products/yoyo/IMG_9662.jpeg'] },
+  { name: 'Yoyo Top', price: '900', category: 'Tops',
+    images: ['/images/products/yoyo/IMG_9669.jpeg', '/images/products/yoyo/IMG_9673.jpeg'] },
+  { name: 'Yoyo Top', price: '900', category: 'Tops',
+    images: ['/images/products/yoyo/IMG_9684.jpeg', '/images/products/yoyo/IMG_9685.jpeg'] },
+  { name: 'Yoyo Top', price: '900', category: 'Tops',
+    images: ['/images/products/yoyo/IMG_9693.jpeg', '/images/products/yoyo/IMG_9698.jpeg'] },
+  { name: 'Yoyo Top', price: '900', category: 'Tops',
+    images: ['/images/products/yoyo/IMG_9699.jpeg', '/images/products/yoyo/IMG_9659.jpeg'] },
+];
+
+const categories = ['All', 'Sets', 'Tops'];
+const prices = ['All', 'Under ₱1,000', '₱1,000 – ₱2,000'];
+---
+
+<Layout title="Catalog" activePage="catalog">
+  <Navbar activePage="catalog" />
+
+  <!-- Page Header -->
+  <div class="pt-28 pb-16 bg-white border-b border-stone-100">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="text-center">
+        <p class="text-pink-400 text-xs tracking-[0.3em] uppercase font-body mb-3">Browse Everything</p>
+        <h1 class="font-display text-5xl lg:text-6xl font-light text-stone-800 mb-4">Our Catalog</h1>
+        <div class="section-divider mt-4"></div>
+        <p class="font-body text-stone-500 mt-6 max-w-md mx-auto">Every piece curated with love for the modern Filipina.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Products -->
+  <section class="py-12 bg-cream min-h-screen">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+
+      <!-- Filter Bar -->
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 mb-10">
+        <div class="flex flex-wrap gap-2 items-center">
+          <span class="text-xs text-stone-400 font-body uppercase tracking-widest mr-1">Filter:</span>
+          {categories.map((cat, i) => (
+            <button
+              class={`px-4 py-2 rounded-full text-xs font-body font-medium tracking-wider uppercase transition-all duration-300 filter-btn ${i === 0
+                ? 'bg-pink-400 text-white shadow-md active'
+                : 'bg-white text-stone-600 hover:bg-pink-50 hover:text-pink-500 border border-stone-200'
+              }`}
+              data-filter={cat}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+        <div class="flex items-center gap-4 flex-shrink-0">
+          <p class="text-stone-400 text-sm font-body">{allProducts.length} pieces</p>
+          <select class="bg-white border border-stone-200 rounded-full px-4 py-2 text-sm font-body text-stone-600 focus:outline-none focus:border-pink-300 cursor-pointer">
+            <option>Sort: Newest</option>
+            <option>Price: Low to High</option>
+            <option>Price: High to Low</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Product Grid -->
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-6" id="product-grid">
+        {allProducts.map((product, i) => (
+          <div class="group product-item" data-category={product.category}>
+            <ProductCard {...product} index={i} />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<script>
+  // Client-side filter
+  const btns = document.querySelectorAll('.filter-btn');
+  const items = document.querySelectorAll('.product-item');
+
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = btn.getAttribute('data-filter');
+
+      // Update button styles
+      btns.forEach(b => {
+        b.classList.remove('bg-pink-400', 'text-white', 'shadow-md');
+        b.classList.add('bg-white', 'text-stone-600', 'border', 'border-stone-200');
+      });
+      btn.classList.add('bg-pink-400', 'text-white', 'shadow-md');
+      btn.classList.remove('bg-white', 'text-stone-600', 'border', 'border-stone-200');
+
+      // Show/hide items
+      items.forEach(item => {
+        const cat = item.getAttribute('data-category');
+        if (filter === 'All' || cat === filter) {
+          (item as HTMLElement).style.display = '';
+        } else {
+          (item as HTMLElement).style.display = 'none';
+        }
+      });
+    });
+  });
+</script>
