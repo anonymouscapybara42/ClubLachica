@@ -4,6 +4,10 @@ import Navbar from '../components/Navbar.astro';
 import Hero from '../components/Hero.astro';
 import ProductCard from '../components/ProductCard.astro';
 import Footer from '../components/Footer.astro';
+import { getSessionUser, getCart } from '../lib/auth';
+const user = getSessionUser(Astro.request);
+const cartCount = getCart(Astro.request).reduce((s, i) => s + i.qty, 0);
+
 
 // Real products with actual images
 const newArrivals = [
@@ -136,7 +140,7 @@ const categories = [
 ---
 
 <Layout title="Home" activePage="home">
-  <Navbar transparent={true} />
+  <Navbar transparent={true} user={user} cartCount={cartCount} />
   <Hero />
 
   <!-- Category Showcase -->

@@ -1,0 +1,164 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import { getSessionUser } from '../../lib/auth';
+import { getOrders, getProducts, getUsers, getFeedbacks } from '../../lib/db';
+
+const user = getSessionUser(Astro.request);
+if (!user || !user.isAdmin) return Astro.redirect('/login');
+
+const orders = getOrders();
+const products = getProducts();
+const users = getUsers().filter(u => !u.isAdmin);
+const feedbacks = getFeedbacks();
+
+const totalRevenue = orders.filter(o => o.orderStatus !== 'cancelled').reduce((s, o) => s + o.total, 0);
+const pendingOrders = orders.filter(o => o.orderStatus === 'pending').length;
+const formatPrice = (p: number) => p.toLocaleString('en-PH');
+const formatDate = (d: string) => new Date(d).toLocaleDateString('en-PH', { month: 'short', day: 'numeric', year: 'numeric' });
+
+const recentOrders = [...orders].sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()).slice(0, 5);
+
+const statusColor: Record<string, string> = {
+  pending: 'bg-yellow-100 text-yellow-700',
+  confirmed: 'bg-blue-100 text-blue-700',
+  shipped: 'bg-purple-100 text-purple-700',
+  delivered: 'bg-green-100 text-green-700',
+  cancelled: 'bg-red-100 text-red-700',
+};
+---
+
+<Layout title="Admin Dashboard">
+  <!-- Admin nav -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-stone-900 border-b border-stone-800">
+    <div class="max-w-full px-6 flex items-center justify-between h-16">
+      <div class="flex items-center gap-6">
+        <div>
+          <span class="font-display text-lg text-white tracking-widest">CLUB LA CHICA</span>
+          <span class="text-pink-400 text-xs font-body ml-2 tracking-widest">ADMIN</span>
+        </div>
+        <div class="hidden md:flex items-center gap-1">
+          {[
+            { href: '/admin', label: 'Dashboard', active: true },
+            { href: '/admin/products', label: 'Products' },
+            { href: '/admin/orders', label: 'Orders' },
+            { href: '/admin/users', label: 'Users' },
+            { href: '/admin/feedback', label: 'Feedback' },
+          ].map(link => (
+            <a href={link.href}
+              class={`px-4 py-2 rounded-lg text-xs font-body font-medium tracking-wider uppercase transition-colors ${link.active ? 'bg-stone-800 text-white' : 'text-stone-400 hover:text-white hover:bg-stone-800'}`}>
+              {link.label}
+            </a>
+          ))}
+        </div>
+      </div>
+      <div class="flex items-center gap-4">
+        <span class="text-stone-400 text-xs font-body hidden sm:block">{user.email}</span>
+        <a href="/" class="text-stone-400 hover:text-white text-xs font-body transition-colors">View Site</a>
+        <a href="/logout" class="bg-pink-400 hover:bg-pink-500 text-white text-xs font-body font-semibold px-4 py-2 rounded-full transition-colors">Logout</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="min-h-screen bg-stone-950 pt-20 pb-12">
+    <div class="max-w-7xl mx-auto px-6">
+
+      <!-- Page Header -->
+      <div class="py-8">
+        <h1 class="font-display text-3xl font-light text-white">Dashboard</h1>
+        <p class="text-stone-500 font-body text-sm mt-1">Welcome back, {user.name}</p>
+      </div>
+
+      <!-- Stats Grid -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+        {[
+          { label: 'Total Revenue', value: `₱${formatPrice(totalRevenue)}`, icon: 'M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6', color: 'text-pink-400', bg: 'bg-pink-400/10' },
+          { label: 'Total Orders', value: String(orders.length), icon: 'M16 11V7a4 4 0 0 0-8 0v4M5 9h14l1 12H4L5 9z', color: 'text-blue-400', bg: 'bg-blue-400/10' },
+          { label: 'Pending Orders', value: String(pendingOrders), icon: 'M12 8v4l3 3m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0z', color: 'text-amber-400', bg: 'bg-amber-400/10' },
+          { label: 'Customers', value: String(users.length), icon: 'M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75', color: 'text-sage-400', bg: 'bg-green-400/10' },
+        ].map(stat => (
+          <div class="bg-stone-900 rounded-2xl p-5 border border-stone-800">
+            <div class={`w-10 h-10 ${stat.bg} rounded-xl flex items-center justify-center mb-4`}>
+              <svg class={stat.color} width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                <path d={stat.icon}/>
+              </svg>
+            </div>
+            <p class="text-stone-500 text-xs font-body uppercase tracking-widest">{stat.label}</p>
+            <p class="font-display text-2xl text-white mt-1">{stat.value}</p>
+          </div>
+        ))}
+      </div>
+
+      <!-- Recent Orders + Quick Actions -->
+      <div class="grid lg:grid-cols-3 gap-6">
+
+        <!-- Recent Orders -->
+        <div class="lg:col-span-2 bg-stone-900 rounded-2xl border border-stone-800 overflow-hidden">
+          <div class="flex items-center justify-between px-6 py-4 border-b border-stone-800">
+            <h2 class="font-display text-lg text-white font-light">Recent Orders</h2>
+            <a href="/admin/orders" class="text-xs text-pink-400 hover:text-pink-300 font-body transition-colors">View All →</a>
+          </div>
+          <div class="divide-y divide-stone-800">
+            {recentOrders.length === 0 ? (
+              <p class="text-stone-500 text-sm font-body text-center py-8">No orders yet</p>
+            ) : recentOrders.map(order => (
+              <div class="flex items-center gap-4 px-6 py-4">
+                <div class="flex-1 min-w-0">
+                  <p class="font-body text-sm text-white truncate">{order.userName}</p>
+                  <p class="text-stone-500 text-xs font-body">{order.id} · {formatDate(order.createdAt)}</p>
+                </div>
+                <span class={`text-[10px] font-semibold px-2.5 py-1 rounded-full capitalize flex-shrink-0 ${statusColor[order.orderStatus] || 'bg-stone-700 text-stone-300'}`}>
+                  {order.orderStatus}
+                </span>
+                <span class="text-pink-400 font-body font-semibold text-sm flex-shrink-0">₱{formatPrice(order.total)}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="space-y-4">
+          <div class="bg-stone-900 rounded-2xl border border-stone-800 p-5">
+            <h2 class="font-display text-lg text-white font-light mb-4">Quick Actions</h2>
+            <div class="space-y-2">
+              {[
+                { href: '/admin/products', label: 'Manage Products', icon: 'M20 7H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2' },
+                { href: '/admin/orders', label: 'Manage Orders', icon: 'M16 11V7a4 4 0 0 0-8 0v4M5 9h14l1 12H4L5 9z' },
+                { href: '/admin/feedback', label: 'View Feedback', icon: 'M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z' },
+                { href: '/admin/users', label: 'View Customers', icon: 'M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2' },
+              ].map(action => (
+                <a href={action.href}
+                  class="flex items-center gap-3 p-3 rounded-xl hover:bg-stone-800 transition-colors group">
+                  <div class="w-8 h-8 bg-stone-800 group-hover:bg-stone-700 rounded-lg flex items-center justify-center transition-colors flex-shrink-0">
+                    <svg class="text-pink-400" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                      <path d={action.icon}/>
+                    </svg>
+                  </div>
+                  <span class="text-stone-300 group-hover:text-white text-sm font-body transition-colors">{action.label}</span>
+                </a>
+              ))}
+            </div>
+          </div>
+
+          <!-- Summary Stats -->
+          <div class="bg-stone-900 rounded-2xl border border-stone-800 p-5">
+            <h2 class="font-display text-lg text-white font-light mb-4">Inventory</h2>
+            <div class="space-y-3">
+              {products.map(p => (
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <img src={p.images[0]} alt={p.name} class="w-8 h-9 object-cover object-top rounded-lg flex-shrink-0" />
+                    <span class="text-stone-300 text-xs font-body">{p.name}</span>
+                  </div>
+                  <span class={`text-xs font-semibold ${p.stock > 10 ? 'text-green-400' : p.stock > 0 ? 'text-amber-400' : 'text-red-400'}`}>
+                    {p.stock} left
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>

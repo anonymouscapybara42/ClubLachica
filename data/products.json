@@ -1,0 +1,90 @@
+[
+  {
+    "id": "prod_fifi",
+    "name": "Fifi Set",
+    "price": 1750,
+    "category": "Sets",
+    "badge": "New",
+    "images": [
+      "/images/products/fifi/184A1212.jpeg",
+      "/images/products/fifi/184A1220.jpeg",
+      "/images/products/fifi/184A1526.jpeg",
+      "/images/products/fifi/IMG_9362.jpeg",
+      "/images/products/fifi/IMG_9370.jpeg",
+      "/images/products/fifi/IMG_9386.jpeg",
+      "/images/products/fifi/IMG_9418.jpeg",
+      "/images/products/fifi/IMG_9420.jpeg",
+      "/images/products/fifi/IMG_9435.jpeg",
+      "/images/products/fifi/IMG_9485.jpeg",
+      "/images/products/fifi/IMG_9503.jpeg",
+      "/images/products/fifi/IMG_9534.jpeg",
+      "/images/products/fifi/IMG_9566.jpeg",
+      "/images/products/fifi/IMG_9574.jpeg",
+      "/images/products/fifi/IMG_9606.jpeg",
+      "/images/products/fifi/IMG_9633.jpeg",
+      "/images/products/fifi/IMG_9635.jpeg",
+      "/images/products/fifi/IMG_9637.jpeg"
+    ],
+    "stock": 50,
+    "active": true,
+    "createdAt": "2026-06-01T00:51:24.809Z"
+  },
+  {
+    "id": "prod_lachica",
+    "name": "Lachica Set",
+    "price": 1750,
+    "category": "Sets",
+    "badge": "New",
+    "images": [
+      "/images/products/lachica/IMG_9055.jpeg",
+      "/images/products/lachica/IMG_9087.jpeg",
+      "/images/products/lachica/IMG_9103.jpeg",
+      "/images/products/lachica/IMG_9145.jpeg",
+      "/images/products/lachica/IMG_9155.jpeg",
+      "/images/products/lachica/IMG_9165.jpeg",
+      "/images/products/lachica/IMG_9168.jpeg",
+      "/images/products/lachica/IMG_9170.jpeg"
+    ],
+    "stock": 50,
+    "active": true,
+    "createdAt": "2026-06-01T00:51:24.809Z"
+  },
+  {
+    "id": "prod_ari",
+    "name": "Ari Top",
+    "price": 850,
+    "category": "Tops",
+    "badge": "New",
+    "images": [
+      "/images/products/ari/IMG_3179.jpeg",
+      "/images/products/ari/IMG_3217.jpeg",
+      "/images/products/ari/IMG_3231.jpeg",
+      "/images/products/ari/IMG_3258.jpeg",
+      "/images/products/ari/IMG_3456.jpeg"
+    ],
+    "stock": 50,
+    "active": true,
+    "createdAt": "2026-06-01T00:51:24.809Z"
+  },
+  {
+    "id": "prod_yoyo",
+    "name": "Yoyo Top",
+    "price": 900,
+    "category": "Tops",
+    "badge": "New",
+    "images": [
+      "/images/products/yoyo/IMG_9659.jpeg",
+      "/images/products/yoyo/IMG_9662.jpeg",
+      "/images/products/yoyo/IMG_9669.jpeg",
+      "/images/products/yoyo/IMG_9673.jpeg",
+      "/images/products/yoyo/IMG_9684.jpeg",
+      "/images/products/yoyo/IMG_9685.jpeg",
+      "/images/products/yoyo/IMG_9693.jpeg",
+      "/images/products/yoyo/IMG_9698.jpeg",
+      "/images/products/yoyo/IMG_9699.jpeg"
+    ],
+    "stock": 50,
+    "active": true,
+    "createdAt": "2026-06-01T00:51:24.809Z"
+  }
+]

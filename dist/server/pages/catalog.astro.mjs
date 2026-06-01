@@ -1,0 +1,34 @@
+/* empty css                                 */
+import { W as createComponent, a6 as renderComponent, ad as renderTemplate, V as createAstro, a3 as maybeRenderHead, H as addAttribute } from '../chunks/astro/server_zoqtqm9I.mjs';
+import { $ as $$Layout } from '../chunks/Layout_BQZ2qm1-.mjs';
+import { a as $$Navbar, $ as $$Footer } from '../chunks/Footer_C99FHmTl.mjs';
+import { o as getSessionUser, h as getCart, n as getProducts } from '../chunks/auth_q-gLBKwE.mjs';
+export { renderers } from '../renderers.mjs';
+
+const $$Astro = createAstro();
+const $$Catalog = createComponent(($$result, $$props, $$slots) => {
+  const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
+  Astro2.self = $$Catalog;
+  const user = getSessionUser(Astro2.request);
+  const cartCount = getCart(Astro2.request).reduce((s, i) => s + i.qty, 0);
+  const allProducts = getProducts().filter((p) => p.active);
+  const categories = ["All", "Sets", "Tops"];
+  const formatPrice = (p) => p.toLocaleString("en-PH");
+  return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": "Catalog", "activePage": "catalog" }, { "default": ($$result2) => renderTemplate` ${renderComponent($$result2, "Navbar", $$Navbar, { "activePage": "catalog", "user": user, "cartCount": cartCount })} ${maybeRenderHead()}<div class="pt-28 pb-16 bg-white border-b border-stone-100"> <div class="max-w-7xl mx-auto px-6 lg:px-8"> <div class="text-center"> <p class="text-pink-400 text-xs tracking-[0.3em] uppercase font-body mb-3">Browse Everything</p> <h1 class="font-display text-5xl lg:text-6xl font-light text-stone-800 mb-4">Our Catalog</h1> <div class="section-divider mt-4"></div> <p class="font-body text-stone-500 mt-6 max-w-md mx-auto">Every piece curated with love for the modern Filipina.</p> </div> </div> </div> <section class="py-12 bg-cream min-h-screen"> <div class="max-w-7xl mx-auto px-6 lg:px-8"> <!-- Filter Bar --> <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 mb-10"> <div class="flex flex-wrap gap-2 items-center"> <span class="text-xs text-stone-400 font-body uppercase tracking-widest mr-1">Filter:</span> ${categories.map((cat, i) => renderTemplate`<button${addAttribute(`px-4 py-2 rounded-full text-xs font-body font-medium tracking-wider uppercase transition-all duration-300 filter-btn ${i === 0 ? "bg-pink-400 text-white shadow-md" : "bg-white text-stone-600 hover:bg-pink-50 hover:text-pink-500 border border-stone-200"}`, "class")}${addAttribute(cat, "data-filter")}> ${cat} </button>`)} </div> <p class="text-stone-400 text-sm font-body">${allProducts.length} pieces</p> </div> <!-- Product Grid --> <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-6" id="product-grid"> ${allProducts.map((product, i) => renderTemplate`<a${addAttribute(`/product/${product.id}`, "href")} class="group product-item animate-on-scroll"${addAttribute(product.category, "data-category")}${addAttribute(`transition-delay: ${i * 0.06}s`, "style")}> <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-400 hover:-translate-y-2"> <!-- Image --> <div class="relative overflow-hidden" style="padding-bottom: 130%;"> <img${addAttribute(product.images[0], "src")}${addAttribute(product.name, "alt")} class="absolute inset-0 w-full h-full object-cover object-top transition-all duration-700 group-hover:opacity-0"> ${product.images[1] && renderTemplate`<img${addAttribute(product.images[1], "src")}${addAttribute(product.name, "alt")} class="absolute inset-0 w-full h-full object-cover object-top transition-all duration-700 opacity-0 group-hover:opacity-100">`} ${product.badge && renderTemplate`<div class="absolute top-3 left-3 z-10"> <span class="bg-pink-400 text-white text-[10px] font-semibold tracking-widest uppercase px-3 py-1.5 rounded-full shadow-md">${product.badge}</span> </div>`} <div class="absolute inset-x-0 bottom-0 pb-4 flex justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 z-10"> <span class="bg-white/90 backdrop-blur-sm text-stone-800 text-[11px] font-body font-semibold tracking-wider uppercase px-5 py-2 rounded-full shadow-lg">
+View Product
+</span> </div> </div> <!-- Info --> <div class="p-4"> <p class="text-[10px] text-stone-400 uppercase tracking-widest font-body mb-1">${product.category}</p> <h3 class="font-display text-base font-medium text-stone-800 leading-snug mb-2">${product.name}</h3> <div class="flex items-center justify-between"> <span class="font-body font-semibold text-pink-500 text-sm">₱${formatPrice(product.price)}</span> <div class="w-8 h-8 rounded-full bg-pink-50 hover:bg-pink-400 flex items-center justify-center transition-all duration-300 group-hover:scale-110"> <svg class="group-hover:stroke-white transition-colors" width="14" height="14" fill="none" stroke="#d4829e" stroke-width="2" viewBox="0 0 24 24"> <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path> </svg> </div> </div> </div> </div> </a>`)} </div> </div> </section> ${renderComponent($$result2, "Footer", $$Footer, {})} ` })} `;
+}, "/home/claude/clc-shop/clc-export/src/pages/catalog.astro", void 0);
+
+const $$file = "/home/claude/clc-shop/clc-export/src/pages/catalog.astro";
+const $$url = "/catalog";
+
+const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
+  __proto__: null,
+  default: $$Catalog,
+  file: $$file,
+  url: $$url
+}, Symbol.toStringTag, { value: 'Module' }));
+
+const page = () => _page;
+
+export { page };

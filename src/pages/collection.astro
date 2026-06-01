@@ -3,6 +3,10 @@ import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import ProductCard from '../components/ProductCard.astro';
 import Footer from '../components/Footer.astro';
+import { getSessionUser, getCart } from '../lib/auth';
+const user = getSessionUser(Astro.request);
+const cartCount = getCart(Astro.request).reduce((s, i) => s + i.qty, 0);
+
 
 const collections = [
   {
@@ -79,7 +83,7 @@ const featuredPieces = [
 ---
 
 <Layout title="Collection" activePage="collection">
-  <Navbar activePage="collection" transparent={true} />
+  <Navbar activePage="collection" transparent={true} user={user} cartCount={cartCount} />
 
   <!-- Hero -->
   <div class="relative min-h-[70vh] flex items-end overflow-hidden">

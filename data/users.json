@@ -1,0 +1,10 @@
+[
+  {
+    "id": "admin_001",
+    "email": "Fionaysbel@gmail.com",
+    "passwordHash": "h_131f71ca_15",
+    "name": "Admin",
+    "createdAt": "2026-06-01T00:53:37.997Z",
+    "isAdmin": true
+  }
+]

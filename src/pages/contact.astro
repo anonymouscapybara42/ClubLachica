@@ -2,10 +2,14 @@
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
+import { getSessionUser, getCart } from '../lib/auth';
+const user = getSessionUser(Astro.request);
+const cartCount = getCart(Astro.request).reduce((s, i) => s + i.qty, 0);
+
 ---
 
 <Layout title="Contact Us" activePage="contact">
-  <Navbar activePage="contact" />
+  <Navbar activePage="contact" user={user} cartCount={cartCount} />
 
   <!-- Page Header -->
   <div class="pt-28 pb-16 bg-champagne relative overflow-hidden">

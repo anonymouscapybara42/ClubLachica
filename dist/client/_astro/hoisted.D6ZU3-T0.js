@@ -1,0 +1,1 @@
+import"./hoisted.CifK0Ldf.js";import"./hoisted.DuuYTrnI.js";function l(t){document.getElementById("rating-input").value=String(t),document.querySelectorAll(".star-btn").forEach((e,o)=>{e.classList.toggle("text-yellow-400",o<t),e.classList.toggle("text-stone-300",o>=t)})}l(5);window.setRating=l;

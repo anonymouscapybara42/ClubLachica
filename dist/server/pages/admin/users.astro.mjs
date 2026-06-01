@@ -1,0 +1,41 @@
+/* empty css                                    */
+import { W as createComponent, a6 as renderComponent, ad as renderTemplate, V as createAstro, a3 as maybeRenderHead, H as addAttribute } from '../../chunks/astro/server_zoqtqm9I.mjs';
+import { $ as $$Layout } from '../../chunks/Layout_BQZ2qm1-.mjs';
+import { o as getSessionUser, q as getUsers, l as getOrdersByUser } from '../../chunks/auth_q-gLBKwE.mjs';
+export { renderers } from '../../renderers.mjs';
+
+const $$Astro = createAstro();
+const $$Users = createComponent(($$result, $$props, $$slots) => {
+  const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
+  Astro2.self = $$Users;
+  const user = getSessionUser(Astro2.request);
+  if (!user || !user.isAdmin) return Astro2.redirect("/login");
+  const allUsers = getUsers().filter((u) => !u.isAdmin);
+  const formatDate = (d) => new Date(d).toLocaleDateString("en-PH", { month: "short", day: "numeric", year: "numeric" });
+  const formatPrice = (p) => p.toLocaleString("en-PH");
+  return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": "Admin \u2014 Users" }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<nav class="fixed top-0 left-0 right-0 z-50 bg-stone-900 border-b border-stone-800"> <div class="max-w-full px-6 flex items-center justify-between h-16"> <div class="flex items-center gap-6"> <a href="/admin" class="font-display text-lg text-white tracking-widest">CLUB LA CHICA <span class="text-pink-400 text-xs font-body">ADMIN</span></a> <div class="hidden md:flex items-center gap-1"> ${[
+    { href: "/admin", label: "Dashboard" },
+    { href: "/admin/products", label: "Products" },
+    { href: "/admin/orders", label: "Orders" },
+    { href: "/admin/users", label: "Users", active: true },
+    { href: "/admin/feedback", label: "Feedback" }
+  ].map((link) => renderTemplate`<a${addAttribute(link.href, "href")}${addAttribute(`px-4 py-2 rounded-lg text-xs font-body font-medium tracking-wider uppercase transition-colors ${link.active ? "bg-stone-800 text-white" : "text-stone-400 hover:text-white hover:bg-stone-800"}`, "class")}> ${link.label} </a>`)} </div> </div> <div class="flex items-center gap-3"> <a href="/" class="text-stone-400 hover:text-white text-xs font-body">View Site</a> <a href="/logout" class="bg-pink-400 hover:bg-pink-500 text-white text-xs font-body font-semibold px-4 py-2 rounded-full">Logout</a> </div> </div> </nav> <main class="min-h-screen bg-stone-950 pt-20 pb-12"> <div class="max-w-7xl mx-auto px-6"> <div class="py-8"> <h1 class="font-display text-3xl font-light text-white">Customers</h1> <p class="text-stone-500 font-body text-sm mt-1">${allUsers.length} registered customers</p> </div> <div class="bg-stone-900 rounded-2xl border border-stone-800 overflow-hidden"> ${allUsers.length === 0 ? renderTemplate`<div class="p-12 text-center"> <p class="text-stone-500 font-body">No customers registered yet.</p> </div>` : renderTemplate`<div class="overflow-x-auto"> <table class="w-full"> <thead> <tr class="border-b border-stone-800"> <th class="text-left px-5 py-4 text-[10px] text-stone-500 font-body uppercase tracking-widest">Customer</th> <th class="text-left px-4 py-4 text-[10px] text-stone-500 font-body uppercase tracking-widest">Contact</th> <th class="text-left px-4 py-4 text-[10px] text-stone-500 font-body uppercase tracking-widest">Orders</th> <th class="text-left px-4 py-4 text-[10px] text-stone-500 font-body uppercase tracking-widest">Total Spent</th> <th class="text-left px-4 py-4 text-[10px] text-stone-500 font-body uppercase tracking-widest">Joined</th> </tr> </thead> <tbody class="divide-y divide-stone-800"> ${allUsers.map((u) => {
+    const userOrders = getOrdersByUser(u.id);
+    const totalSpent = userOrders.filter((o) => o.orderStatus !== "cancelled").reduce((s, o) => s + o.total, 0);
+    return renderTemplate`<tr class="hover:bg-stone-800/50 transition-colors"> <td class="px-5 py-4"> <div class="flex items-center gap-3"> <div class="w-9 h-9 rounded-full bg-gradient-to-br from-pink-300 to-rose-200 flex items-center justify-center flex-shrink-0"> <span class="font-display text-sm text-stone-700 font-medium">${u.name.charAt(0).toUpperCase()}</span> </div> <div> <p class="font-body font-medium text-white text-sm">${u.name}</p> <p class="text-stone-500 text-xs font-body">${u.id}</p> </div> </div> </td> <td class="px-4 py-4"> <p class="text-stone-300 text-sm font-body">${u.email}</p> ${u.phone && renderTemplate`<p class="text-stone-500 text-xs font-body mt-0.5">${u.phone}</p>`} ${u.address && renderTemplate`<p class="text-stone-600 text-xs font-body mt-0.5 max-w-xs truncate">${u.address}</p>`} </td> <td class="px-4 py-4"> <span class="font-body text-stone-300 text-sm">${userOrders.length} order${userOrders.length !== 1 ? "s" : ""}</span> </td> <td class="px-4 py-4"> <span class="font-body font-semibold text-pink-400 text-sm">₱${formatPrice(totalSpent)}</span> </td> <td class="px-4 py-4"> <span class="text-stone-500 text-sm font-body">${formatDate(u.createdAt)}</span> </td> </tr>`;
+  })} </tbody> </table> </div>`} </div> </div> </main> ` })}`;
+}, "/home/claude/clc-shop/clc-export/src/pages/admin/users.astro", void 0);
+
+const $$file = "/home/claude/clc-shop/clc-export/src/pages/admin/users.astro";
+const $$url = "/admin/users";
+
+const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
+  __proto__: null,
+  default: $$Users,
+  file: $$file,
+  url: $$url
+}, Symbol.toStringTag, { value: 'Module' }));
+
+const page = () => _page;
+
+export { page };
